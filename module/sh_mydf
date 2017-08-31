@@ -5,5 +5,5 @@ result=`df -P -k $mountpoint | tail -1`
 
 read total used used_percent <<< `echo $result | awk '{print $2,$3,$5}'`
 
-echo "{\"used_percent\":\"$used_percent\",\"total\":\"$total\",\"used\": \"$used\"}"
+echo "{\"mountpoint\":\"$mountpoint\",\"used_percent\":\"$used_percent\",\"total\":\"$total\",\"used\": \"$used\"}"
 

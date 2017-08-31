@@ -3,7 +3,7 @@
   gather_facts: no
   tasks:
     - name: test my df module 
-      py_mydf: mountpoint=/
+      sh_mydf: mountpoint=/
       become: yes
       become_user: root
       become_method: sudo
