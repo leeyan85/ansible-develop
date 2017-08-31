@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - name: test my df module 
+      py_mydf: mountpoint=/
+      become: yes
+      become_user: root
+      become_method: sudo
+      register: output
+    - name: debug vars
+      debug: var=output
+      
