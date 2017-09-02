@@ -1,4 +1,8 @@
-#Ansible Develop Guide
+# Ansible Develop Guide
+
+[TOC]
+
+
 ## 1. Ansible module
 多数情况下，没有必要写自己的module，官方已经给我们提供了很多module，几乎涵盖了所有功能
 [Ansible Modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
@@ -44,7 +48,7 @@ _ _ _
 ## 4. Ansible Plugins
 1. plugin是什么 ？
 回顾一下ansible的执行流程
-![ansible的执行流程](https://github.com/leeyan85/ansibledevelop/blob/master/ansible%20process.PNG)
+![ansible的执行流程](https://github.com/leeyan85/ansible-develop/blob/master/ansible%20process.PNG)
 
 2. 有哪些plugin ？
 [Ansible plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins)
@@ -53,7 +57,7 @@ _ _ _
 ansible.cfg中打开相关的plugin的配置
 
 4. 如何扩展的plugin ？
-本课程我们扩展一下callback plugin，并使用ansible运行看callback
+***本课程我们扩展一下callback plugin，并使用ansible运行看callback***
 
 
 
