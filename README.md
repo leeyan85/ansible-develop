@@ -1,13 +1,11 @@
-#ansible develop
-
-[TOC]
+#Ansible Develop Guide
 ## 1. Ansible module
 多数情况下，没有必要写自己的module，官方已经给我们提供了很多module，几乎涵盖了所有功能
 [Ansible Modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
 
 当你有自己特殊的业务时，需要写自己的ansible module，如何写自己的ansible module呢 ？
 
-*本课程将通过检测文件是否变化，写一个自己的模块*
+***本课程将通过检测文件是否变化，写一个自己的模块***
 _ _ _
 
 
@@ -23,24 +21,30 @@ AWS和openstack,ansible已经提供了如何生成动态inventory的脚本，可
 [AWS ansible Dynamic inventory scripts](http://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html#id6)
 [Openstack ansible Dynamic inventory scripts](http://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html#example-openstack-external-inventory-script)
 
-*本课程通过建立一个简单的CMDB，并且使用python脚本从CMDB获取Dynamic Inventory*
+***本课程通过建立一个简单的CMDB，并且使用python脚本从CMDB获取Dynamic Inventory***
 
 
 _ _ _
 
-## 3. Ansible API
-回顾一下ansible的执行流程，在这些执行流程中都会有plugin
-![ansible的执行流程](http://)
+## 3. Ansible Python API 
+1. 什么是Ansible Python API ?
+Ansible Python API是一组用python编写的类和函数，便于使用python程序调用Ansible的核心功能
 
-1. 什么是Ansible API ？
+2. 为什么要使用Ansible Python API ？
+Ansible python API的应用场景主要有一下几种
+    1. 前一次的执行结果作为后一次任务的参数输入
+    2. 对任务的执行结果进行定制化输出或者存储
+    3. 方便其他程序调用ansible的核心功能
 
-2. 如何使用API ？
+3. 如何使用Ansible Python API ？
+***本课程通过Ansible Python API 调用之前写的自定义模块来说明Ansible Python API如何使用***
 
 _ _ _
 
 ## 4. Ansible Plugins
 1. plugin是什么 ？
-
+回顾一下ansible的执行流程
+![ansible的执行流程](https://github.com/leeyan85/ansibledevelop/blob/master/ansible%20process.PNG)
 
 2. 有哪些plugin ？
 [Ansible plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins)
@@ -48,8 +52,8 @@ _ _ _
 3. 如何使用plugin ？
 ansible.cfg中打开相关的plugin的配置
 
-4. 如何编写自己的plugin ？
-我们扩展一下callback plugin，并使用ansible运行看callback，plugin是否生效
+4. 如何扩展的plugin ？
+本课程我们扩展一下callback plugin，并使用ansible运行看callback
 
 
 
