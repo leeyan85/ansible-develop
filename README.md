@@ -48,6 +48,7 @@ _ _ _
 ## 4. Ansible Plugins
 1. plugin是什么 ？
 回顾一下ansible的执行流程
+
 [Ansible plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins)
 inventory --->由ansible.inventory模块创建，用于导入inventory文件
 variable_manage ---> 由ansible.vars模块创建，用于存储各类变量信息
@@ -70,7 +71,7 @@ terminal_plugins
 strategy_plugins  
 
 3. 如何使用plugin ？
-1.ansible.cfg中打开相关的plugin的配置
+ansible.cfg中打开相关的plugin的配置
 
 4. 如何扩展的plugin ？
 ***本课程我们扩展一下callback plugin，并使用ansible运行看callback***
