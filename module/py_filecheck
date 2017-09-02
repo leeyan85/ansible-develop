@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+#coding: utf-8
+import subprocess
+import json
+import hashlib
+import os
+import re
+
+def GetFileMd5(module):
+    if not os.path.isfile(module.params['filename']):
+        module.exit_json(msg="%s noexist"%module.params['filename'], changed=False)
+    else:       
+        myhash = hashlib.md5()
+        f = file(module.params['filename'],'rb')
+        while True:
+            b = f.read(8096)
+            if not b :
+                break
+            myhash.update(b)
+        f.close()
+        md5value_new=myhash.hexdigest().lower()
+        #module.exit_json(md5value=md5value_new, changed=False)        
+        if os.path.isfile('/tmp/myfact.txt'): 
+            with open('/tmp/myfact.txt','r') as f:
+                for line in f:
+                    print line
+                    if re.search(module.params['filename'],line):
+                        md5value_old=line.split(':')[1].strip('\n')
+            print   md5value_old,   md5value_new       
+            if md5value_old==md5value_new:
+                module.exit_json(msg="%s unmodified"%module.params['filename'], changed=False)
+            else:
+                with open('/tmp/myfact.txt','w') as f:
+                    f.write('%s:%s\n'%(module.params['filename'],md5value_new))
+                module.exit_json(msg="%s modified"%module.params['filename'], changed=False)
+                
+        else:
+            with open('/tmp/myfact.txt','w') as f:
+                f.write('%s:%s'%(module.params['filename'],md5value_new))        
+            module.exit_json(msg='fist register key ansible_%s_md5value'%module.params['filename'],md5value=md5value_new)
+            
+            
+def main():
+    module=AnsibleModule(
+            argument_spec=dict(
+                filename=dict(required=True),
+            ),
+            supports_check_mode=True
+        )     
+    if module.check_mode:
+        module.exit_json(changed=False)
+    else:
+        GetFileMd5(module)
+            
+from ansible.module_utils.basic import *
+
+if __name__=='__main__':
+    main()

@@ -1,10 +1,21 @@
 #!/bin/bash 
 source $1
+#filename='/etc/password'
+echo $filename
+if [ ! -f "$filename" ]
+then
+    echo "{\"msg\":\"$filename noexist\"}"
+    exit
+fi 
+
 fact_file=/tmp/myfact.txt
 if [ ! -f "$fact_file" ]; then
    touch "$fact_file"
 fi
+
 fact_exist="`grep $filename /tmp/myfact.txt`"
+
+
 if [ -z "$fact_exist" ]
 then
     md5value=`md5sum $filename | awk '{print $1}'`

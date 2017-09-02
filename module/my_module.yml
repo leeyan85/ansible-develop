@@ -1,9 +1,9 @@
 ---
-- hosts: all
+- hosts: "{{host}}"
   gather_facts: no
   tasks:
-    - name: test my df module 
-      sh_mydf: mountpoint=/
+    - name: test filecheck module 
+      py_filecheck: filename=/etc/password
       become: yes
       become_user: root
       become_method: sudo
