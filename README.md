@@ -41,23 +41,24 @@ Ansible python API的应用场景主要有一下几种
     3. 方便其他程序调用ansible的核心功能
 
 3. 如何使用Ansible Python API ？
+
 ***本课程通过Ansible Python API 调用之前写的自定义模块来说明Ansible Python API如何使用***
 
 _ _ _
 
 ## 4. Ansible Plugins
-1. plugin是什么 ？
+1. plugin是什么? 
 回顾一下ansible的执行流程
-
 [Ansible plugins](https://github.com/ansible/ansible/tree/devel/lib/ansible/plugins)
-inventory --->由ansible.inventory模块创建，用于导入inventory文件
-variable_manage ---> 由ansible.vars模块创建，用于存储各类变量信息
-dataloader --->由ansible.parsing模块创建，用于数据解析
-options --->存放各类配置信息的nametuple
-passwords ---> 设置密码信息，例如become_pass
-callback ---> 回调函数,用于对返回结果进行处理
+inventory --->由ansible.inventory模块创建，用于导入inventory文件 
+variable_manage ---> 由ansible.vars模块创建，用于存储各类变量信息 
+dataloader --->由ansible.parsing模块创建，用于数据解析 
+options --->存放各类配置信息的nametuple 
+passwords ---> 设置密码信息，例如become_pass 
+callback ---> 回调函数,用于对返回结果进行处理 
 
-2. 有哪些plugin ？
+2. 有哪些plugin?
+
 action_plugins    
 cache_plugins     
 callback_plugins  
@@ -70,10 +71,12 @@ test_plugins
 terminal_plugins  
 strategy_plugins  
 
-3. 如何使用plugin ？
+3. 如何使用plugin?
+
 ansible.cfg中打开相关的plugin的配置
 
-4. 如何扩展的plugin ？
+4. 如何扩展的plugin?
+
 ***本课程我们扩展一下callback plugin，并使用ansible运行看callback***
 
 
