@@ -19,7 +19,7 @@ def GetFileMd5(module,ansible_facts_dict):
         f.close()
         md5value_new=myhash.hexdigest().lower()
         #module.exit_json(md5value=md5value_new, changed=False)        
-        if ansible_facts_dict["ansible_facts"].has_key('ansible_md5value'):#自定义的fact可以写入/etc/ansible/facts.d/
+        if ansible_facts_dict["ansible_facts"].has_key('ansible_md5value'):
             md5value_old=ansible_facts_dict["ansible_facts"]['ansible_md5value']
             if md5value_old==md5value_new:
                 module.exit_json(msg="%s unmodified", changed=False)
