@@ -73,7 +73,7 @@ _ _ _
 
 3. 给数据库用户赋予权限
    
-   grant all privileges on *.* to root@'%' identified by 'password';
+   grant all privileges on ansible_trainning.* to ansible identified by 'ansible';
 
 _ _ _
    
