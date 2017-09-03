@@ -48,14 +48,14 @@
 
 ## 3. 从数据库中获取动态Inventory
 
-###3.1 安装一些软件
+### 3.1 安装一些软件
 
 1. yum install python-pip
 2. yum install mysql-server
 3. yum install MySQL-python
 4. pip install sqlalchemy
 
-###3.2 初始化数据库
+### 3.2 初始化数据库
 
 1. 建立一个数据库 
 
