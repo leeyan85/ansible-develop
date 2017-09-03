@@ -38,18 +38,18 @@ _ _ _
 ## 3. Ansible Python API 
 1. 什么是Ansible Python API ?
 
-Ansible Python API是一组用python编写的类和函数，便于使用python程序调用Ansible的核心功能
+   Ansible Python API是一组用python编写的类和函数，便于使用python程序调用Ansible的核心功能
 
 2. 为什么要使用Ansible Python API ？
-Ansible python API的应用场景主要有一下几种
+   Ansible python API的应用场景主要有一下几种
+   
     1. 前一次的执行结果作为后一次任务的参数输入
     2. 对任务的执行结果进行定制化输出或者存储
     3. 方便其他程序调用ans	ible的核心功能
 
 3. 如何使用Ansible Python API ？
 
-
-***本课程通过Ansible Python API 调用之前写的自定义模块来说明Ansible Python API如何使用***
+	***本课程通过Ansible Python API 调用之前写的自定义模块来说明Ansible Python API如何使用***
 
 _ _ _
 
@@ -60,21 +60,22 @@ _ _ _
 
 2. 有哪些plugin?
 
-- action_plugins
-- cache_plugins
-- callback_plugins
-- connection_plugins
-- lookup_plugins
-- inventory_plugins
-- vars_plugins
-- filter_plugins
-- test_plugins
-- terminal_plugins
-- strategy_plugins
+    - action_plugins
+    - cache_plugins
+    - callback_plugins
+    - connection_plugins
+    - lookup_plugins
+    - inventory_plugins
+    - vars_plugins
+    - filter_plugins
+    - test_plugins
+    - terminal_plugins
+    - strategy_plugins
     
 3. 如何扩展plugin?
 
-***本课程我们扩展一下callback plugin，并使用ansible运行看callback***
+	***本课程我们扩展一下callback plugin，并使用ansible运行看callback***
+
 
 4. 如何使用扩展的plugin?
 
