@@ -13,36 +13,36 @@
 
 动态Inventory需要满足一定的json格式才能被ansible的核心模块所识别，格式如下
 
-{
-    "webserver": {
-        "hosts": [
-            "192.168.33.11"
-        ], 
-        "vars": {
-            "ansible_become_user": "vagrant", 
-            "ansible_become_pass": "vagrant"
-        }
-    }, 
-    "dbserver": {
-        "hosts": [
-            "192.168.33.12"
-        ], 
-        "vars": {
-            "ansible_become_user": "root", 
-            "ansible_become_pass": "secret"
-        }
-    }，  
-    "_meta": {
-        "hostvars": {
-            "192.168.33.11": {
-                "software": "jboss"
-            }, 
-            "192.168.33.12": {
-                "software": "mysql"
+    {
+        "webserver": {
+            "hosts": [
+                "192.168.33.11"
+            ], 
+            "vars": {
+                "ansible_become_user": "vagrant", 
+                "ansible_become_pass": "vagrant"
             }
-        }
-    },     
-}
+        }, 
+        "dbserver": {
+            "hosts": [
+                "192.168.33.12"
+            ], 
+            "vars": {
+                "ansible_become_user": "root", 
+                "ansible_become_pass": "secret"
+            }
+        }，  
+        "_meta": {
+            "hostvars": {
+                "192.168.33.11": {
+                    "software": "jboss"
+                }, 
+                "192.168.33.12": {
+                    "software": "mysql"
+                }
+            }
+        },     
+    }
 
 
 
