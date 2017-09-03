@@ -4,8 +4,8 @@
 多数情况下，server信息会存在一些软件系统中，这些软件系统大概包括
 
 1. CMDB
-2. AWS
-3. Openstack
+2. AWS EC2
+3. Openstack [使用vagrant搭建openstack环境](https://github.com/openstack-ansible/openstack-ansible)
 
 这时就需要从这些软件系统中获取动态Inventory
 
