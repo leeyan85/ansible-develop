@@ -118,7 +118,7 @@ def Order_Run(hosts, module_name, module_args):
     results_raw['unreachable'] = {}
 
     for host, result in callback.host_ok.items(): 
-        results_raw['success'][host] = json.dumps(result._result)
+        results_raw['success'][host] = result._result["msg"]
   
     for host, result in callback.host_failed.items():
         results_raw['failed'][host] = result._result['msg']  
