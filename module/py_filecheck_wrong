@@ -19,15 +19,15 @@ def GetFileMd5(module,ansible_facts_dict):
         f.close()
         md5value_new=myhash.hexdigest().lower()
         #module.exit_json(md5value=md5value_new, changed=False)        
-        if ansible_facts_dict["ansible_facts"].has_key('ansible_%s_md5value'%module.params['filename']):#自定义的fact可以写入/etc/ansible/facts.d/
-            md5value_old=ansible_facts_dict["ansible_facts"]['ansible_%s_md5value'%module.params['filename']]
+        if ansible_facts_dict["ansible_facts"].has_key('ansible_md5value'):#自定义的fact可以写入/etc/ansible/facts.d/
+            md5value_old=ansible_facts_dict["ansible_facts"]['ansible_md5value']
             if md5value_old==md5value_new:
                 module.exit_json(msg="%s unmodified", changed=False)
             else:
                 module.exit_json(msg="%s modified", changed=False)               
         else:
-            ansible_facts_dict["ansible_facts"]['ansible_%s_md5value'%module.params['filename']] =md5value_new
-            module.exit_json(msg='fist register key ansible_%s_md5value'%module.params['filename'],md5value=md5value_new)
+            #ansible_facts_dict["ansible_facts"]['ansible_%s_md5value'%module.params['filename']] =md5value_new
+            module.exit_json(msg='fist register key ansible_%s_md5value'%module.params['filename'],ansible_facts=dict(ansible_md5value=md5value_new))
             
             
 
