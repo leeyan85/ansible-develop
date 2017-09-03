@@ -9,6 +9,8 @@
 
 这时就需要从这些软件系统中获取动态Inventory
 
+_ _ _
+
 ## 2. 动态Inventory格式
 
 动态Inventory需要满足一定的json格式才能被ansible的核心模块所识别，格式如下
@@ -45,6 +47,8 @@
     }
 
 
+_ _ _
+
 
 ## 3. 从数据库中获取动态Inventory
 
@@ -55,18 +59,29 @@
 3. yum install MySQL-python
 4. pip install sqlalchemy
 
+_ _ _
+
 ### 3.2 初始化数据库
 
 1. 建立一个数据库 
 
    create database ansible_trainning character set utf8;
 
-2. 给数据库用户赋予权限
+2. 导入示例数据库
+   
+   mysql -u root -p < ansible_trainning.sql
+
+3. 给数据库用户赋予权限
+   
    grant all privileges on *.* to root@'%' identified by 'password';
+
+_ _ _
    
 ### 3.3 获取动态Inventory
 
+   使用例子中的脚本去获取动态inventory
+
 ### 3.4 使用动态inventory
-   
+
 
 
