@@ -13,7 +13,7 @@
 
 动态Inventory需要满足一定的json格式才能被ansible的核心模块所识别，格式如下
 
-`{
+{
     "webserver": {
         "hosts": [
             "192.168.33.11"
@@ -41,9 +41,8 @@
                 "software": "mysql"
             }
         }
-    }, 
-    
-}`
+    },     
+}
 
 
 
