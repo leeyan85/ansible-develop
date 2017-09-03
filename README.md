@@ -60,24 +60,25 @@ _ _ _
 
 2. 有哪些plugin?
 
-    action_plugins    
-    cache_plugins     
-    callback_plugins  
-    connection_plugins
-    lookup_plugins    
-    inventory_plugins 
-    vars_plugins      
-    filter_plugins    
-    test_plugins      
-    terminal_plugins  
-    strategy_plugins  
+- action_plugins
+- cache_plugins
+- callback_plugins
+- connection_plugins
+- lookup_plugins
+- inventory_plugins
+- vars_plugins
+- filter_plugins
+- test_plugins
+- terminal_plugins
+- strategy_plugins
     
 3. 如何扩展plugin?
 
 ***本课程我们扩展一下callback plugin，并使用ansible运行看callback***
 
 4. 如何使用扩展的plugin?
-    ansible.cfg中打开相关的plugin的配置
+
+   ansible.cfg中打开相关的plugin的配置
 
 
 
