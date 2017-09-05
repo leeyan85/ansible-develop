@@ -1,4 +1,3 @@
-
 #!/bin/env python
 # -*- coding:utf8 -*-
 import os
@@ -22,21 +21,21 @@ class ResultCallback(CallbackBase):
         self.host_failed = {}  
 
     def v2_runner_on_unreachable(self, result):  
-        self.host_unreachable[result._host.get_name()] = result  
-
+        self.host_unreachable[result._host.get_name()] = result #result是一个ansible返回的python对象
+        
     def v2_runner_on_ok(self, result,  *args, **kwargs):  
-        self.host_ok[result._host.get_name()] = result  
+        self.host_ok[result._host.get_name()] = result  #result是一个ansible返回的python对象
 
     def v2_runner_on_failed(self, result,  *args, **kwargs):  
-        self.host_failed[result._host.get_name()] = result
-
+        self.host_failed[result._host.get_name()] = result #result是一个ansible返回的python对象
+ 
 
 
 def Order_Run(hosts, module_name, module_args):
     variable_manager = VariableManager()
     loader = DataLoader()
     print "#"*10
-    inventory = Inventory(loader=loader, variable_manager=variable_manager, host_list='hosts')
+    inventory = Inventory(loader=loader, variable_manager=variable_manager, host_list=hosts)#2.0.0.0版本不支持host_list为列表格式
     print '#'*10
     Options = namedtuple('Options',
                         ['listtags', 
@@ -65,7 +64,7 @@ def Order_Run(hosts, module_name, module_args):
                     connection='ssh', 
                     module_path=None, 
                     forks=100, 
-                    remote_user='letv', 
+                    remote_user='vagrant', 
                     private_key_file=None, 
                     ssh_common_args=None, 
                     ssh_extra_args=None, 
@@ -83,8 +82,8 @@ def Order_Run(hosts, module_name, module_args):
                     hosts='all',
                     gather_facts='no',
                     become=True,
-                    become_user='andbase',
-                    become_method='su',
+                    become_user='root',
+                    become_method='sudo',
                     tasks=[
                         dict(action=dict(module=module_name, args=module_args)),
                         dict(action=dict(module='command', args='id'))
@@ -101,7 +100,7 @@ def Order_Run(hosts, module_name, module_args):
                 loader=loader,
                 options=options,
                 passwords=passwords,
-                stdout_callback=callback,
+                stdout_callback=callback, 
                 run_additional_callbacks=C.DEFAULT_LOAD_CALLBACK_PLUGINS,
                 run_tree=False,
                 )
@@ -118,45 +117,18 @@ def Order_Run(hosts, module_name, module_args):
     results_raw['unreachable'] = {}
 
     for host, result in callback.host_ok.items(): 
-        results_raw['success'][host] = result._result["msg"]
-  
-    for host, result in callback.host_failed.items():
-        results_raw['failed'][host] = result._result['msg']  
-  
-    for host, result in callback.host_unreachable.items():
-        results_raw['unreachable'][host]= result._result['msg']  
-    
-    return results_raw
-    
-
-hosts={
-        'servers': {
-                    'vars':{
-                            'package':'servers_var',
-                    },
-                    'children': ['webservers','dbservers'],
-        },
-        'webservers':{
-                    'hosts':['10.75.30.29'],
-                    'vars':{
-                            'package':'group_web_var',
-                     }
-         },
-         'dbservers':{
-                    'hosts':['10.75.30.29'],
-                    'vars':{
-                            'package':'group_db_var',
-                     }
-         },
-         
-         '_meta' : {
-                'hostvars':{
-                    '10.75.30.29':{
-                        'become_pass':'123456',
-                    },
-                }
-          }
-    }
+        results_raw['success'][host] = result._result
+        print json.dumps(dir(result._task),indent=4) #如何查看result对象有哪些属性和方法
+        print json.dumps(dir(result),indent=4) #如何查看result对象有哪些属性和方法
         
-a=Order_Run('hosts','shell','whoami')
-print a
+    for host, result in callback.host_failed.items():
+        results_raw['failed'][host] = result._result
+        
+    for host, result in callback.host_unreachable.items():
+        results_raw['unreachable'][host]= result._result
+        
+    return results_raw
+
+if __name__=='__main__':    
+    a=Order_Run(['192.168.33.11'],'shell','whoami')
+    print a

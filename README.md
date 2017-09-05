@@ -3,19 +3,7 @@
 [TOC]
 
 
-## 1. Ansible module
-
-多数情况下，没有必要写自己的module，官方已经给我们提供了很多module，几乎涵盖了所有功能
-
-可以使用ansible-doc --list 列出所有模块的使用帮助 [Ansible Modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
-
-当你有自己特殊的业务时，需要写自己的ansible module，如何写自己的ansible module呢 ？
-
-***本课程将通过检测文件是否变化，实现自定义ansible模块***
-_ _ _
-
-
-## 2. Dynamic Inventory
+## 1. Dynamic Inventory
 
 当你所管理的机器比较少时，可以使用静态inventory来保存服务器和组的关系，但是当你的服务器越来越多的时候，你通常会考虑使用一个软件系统来存放inventory信息
 
@@ -31,6 +19,19 @@ AWS和openstack,ansible已经提供了如何生成动态inventory的脚本，可
 [Openstack ansible Dynamic inventory scripts](http://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html#example-openstack-external-inventory-script)
 
 ***本课程通过建立一个简单的CMDB，并且使用python脚本从CMDB获取Dynamic Inventory***
+
+
+
+## 2. Ansible module
+
+多数情况下，没有必要写自己的module，官方已经给我们提供了很多module，几乎涵盖了所有功能
+
+可以使用ansible-doc --list 列出所有模块的使用帮助 [Ansible Modules](https://github.com/ansible/ansible/tree/devel/lib/ansible/modules)
+
+当你有自己特殊的业务时，需要写自己的ansible module，如何写自己的ansible module呢 ？
+
+***本课程将通过检测文件是否变化，实现自定义ansible模块***
+_ _ _
 
 
 _ _ _

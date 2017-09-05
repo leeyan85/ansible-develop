@@ -1,0 +1,8 @@
+---
+- hosts: all
+  gather_facts: no 
+  tasks:
+  - name: run a test command
+    shell: whoami
+  - name: run a test command2
+    shell: which python
