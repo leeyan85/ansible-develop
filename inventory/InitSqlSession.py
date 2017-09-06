@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
 def get_engine():
-    engine = create_engine("mysql://ansible:ansible@192.168.33.10/ansible_trainning?charset=utf8")
+    engine = create_engine("mysql://ansibleuser:ansible@127.0.0.1/ansible_trainning?charset=utf8")
     return engine
 
 def get_session(autocommit=True, expire_on_commit=False):
@@ -11,3 +11,4 @@ def get_session(autocommit=True, expire_on_commit=False):
     session = Session()
     return session
 
+    

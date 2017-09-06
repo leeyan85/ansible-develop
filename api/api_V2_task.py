@@ -21,13 +21,15 @@ class ResultCallback(CallbackBase):
         self.host_failed = {}  
 
     def v2_runner_on_unreachable(self, result):  
-        self.host_unreachable[result._host.get_name()] = result #result是一个ansible返回的python对象
+        self.host_unreachable[result._host.get_name()] = result #result是一个ansible执行模块返回的python对象
+        print json.dumps(dir(result._task),indent=4) #如何查看result对象有哪些属性和方法
+        print json.dumps(dir(result),indent=4) #如何查看result对象有哪些属性和方法  
         
     def v2_runner_on_ok(self, result,  *args, **kwargs):  
-        self.host_ok[result._host.get_name()] = result  #result是一个ansible返回的python对象
-
+        self.host_ok[result._host.get_name()] = result  
+        
     def v2_runner_on_failed(self, result,  *args, **kwargs):  
-        self.host_failed[result._host.get_name()] = result #result是一个ansible返回的python对象
+        self.host_failed[result._host.get_name()] = result
  
 
 
@@ -118,15 +120,13 @@ def Order_Run(hosts, module_name, module_args):
 
     for host, result in callback.host_ok.items(): 
         results_raw['success'][host] = result._result
-        print json.dumps(dir(result._task),indent=4) #如何查看result对象有哪些属性和方法
-        print json.dumps(dir(result),indent=4) #如何查看result对象有哪些属性和方法
+
         
     for host, result in callback.host_failed.items():
         results_raw['failed'][host] = result._result
         
     for host, result in callback.host_unreachable.items():
-        results_raw['unreachable'][host]= result._result
-        
+        results_raw['unreachable'][host]= result._result        
     return results_raw
 
 if __name__=='__main__':    

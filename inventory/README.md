@@ -6,6 +6,8 @@
 1. CMDB
 2. AWS EC2
 3. Openstack [使用vagrant搭建openstack环境](https://github.com/openstack-ansible/openstack-ansible)
+4. zabbix 监控系统
+5. cobbler 一键装机系统
 
 这时就需要从这些软件系统中获取动态Inventory
 
@@ -54,10 +56,11 @@ _ _ _
 
 ### 3.1 安装一些软件
 
-1. yum install python-pip
-2. yum install mysql-server
-3. yum install MySQL-python
-4. pip install sqlalchemy
+1. sudo apt-get install python-pip
+2. sudo apt-get install redis-server 
+3. sudo apt-get install python-sqlalchemy
+4. sudo apt-get install python-mysqldb
+5. sudo apt-get install python-redis
 
 _ _ _
 
@@ -69,7 +72,7 @@ _ _ _
 
 2. 导入示例数据库
    
-   mysql -u root -p < ansible_trainning.sql
+   mysql -u root -p ansible_trainning < ansible_trainning.sql
 
 3. 给数据库用户赋予权限
    
