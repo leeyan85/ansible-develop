@@ -17,7 +17,7 @@ script模块能帮我们解决很多复杂的问题，但是script模块可能�
 1. 怎样用Shell或Python编写自定义的Ansible模块
 2. 怎样使用Ansible的自定义模块
 3. 怎样给自定义模块传参数
-4. 如何处理自定义模块的返回值（后续Plugin将会设计）
+4. 如何处理自定义模块的返回值（后续Plugin将会涉及）
 
 ### 2.2 使用shell实现自定义模块
 
@@ -26,7 +26,7 @@ script模块能帮我们解决很多复杂的问题，但是script模块可能�
 
 ### 2.3  使用Anisble Module实现自定义模块
 
-针对shell的不足，使用Python来实现自定义Module，使用Python开发有以下好处：
+使用Python来实现自定义Module，使用Python开发有以下好处：
 
 1. Python模块能更好使用Ansible内置的功能
 2. Python模块能更好处理模块所需的参数
