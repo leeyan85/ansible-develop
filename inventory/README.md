@@ -57,11 +57,11 @@ _ _ _
 ### 3.1 安装一些软件
 
 1. sudo apt-get install python-pip
-2. sudo apt-get install redis-server 
-3. sudo apt-get install python-sqlalchemy
-4. sudo apt-get install python-mysqldb
-5. sudo apt-get install python-redis
-
+2. sudo apt-get install redis-server
+3. sudo apt-get install python-redis
+4. sudo apt-get install python-sqlalchemy
+5. sudo apt-get install python-mysqldb
+6. sudo pip install pymysql
 _ _ _
 
 ### 3.2 初始化数据库
@@ -72,11 +72,11 @@ _ _ _
 
 2. 导入示例数据库
    
-   mysql -u root -p ansible_trainning < ansible_trainning.sql
+   mysql ansible_trainning < ansible_trainning.sql
 
 3. 给数据库用户赋予权限
    
-   grant all privileges on ansible_trainning.* to ansible identified by 'ansible';
+   grant all privileges on ansible_trainning.* to ansibleuser identified by 'ansible';
 
 _ _ _
    

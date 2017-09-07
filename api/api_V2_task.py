@@ -64,9 +64,9 @@ def Order_Run(hosts, module_name, module_args):
                     listhosts=False, 
                     syntax=False, 
                     connection='ssh', 
-                    module_path=None, 
+                    module_path=None,
                     forks=100, 
-                    remote_user='vagrant', 
+                    remote_user='root', 
                     private_key_file=None, 
                     ssh_common_args=None, 
                     ssh_extra_args=None, 
@@ -88,7 +88,7 @@ def Order_Run(hosts, module_name, module_args):
                     become_method='sudo',
                     tasks=[
                         dict(action=dict(module=module_name, args=module_args)),
-                        dict(action=dict(module='command', args='id'))
+                        #dict(action=dict(module='command', args='id'))
                     ]
                     )
     print json.dumps(play_source,indent=4)
@@ -103,7 +103,7 @@ def Order_Run(hosts, module_name, module_args):
                 options=options,
                 passwords=passwords,
                 stdout_callback=callback, 
-                run_additional_callbacks=C.DEFAULT_LOAD_CALLBACK_PLUGINS,
+                #run_additional_callbacks=C.DEFAULT_LOAD_CALLBACK_PLUGINS,
                 run_tree=False,
                 )
         
@@ -121,14 +121,14 @@ def Order_Run(hosts, module_name, module_args):
     for host, result in callback.host_ok.items(): 
         results_raw['success'][host] = result._result
 
-        
+       
     for host, result in callback.host_failed.items():
         results_raw['failed'][host] = result._result
         
     for host, result in callback.host_unreachable.items():
-        results_raw['unreachable'][host]= result._result        
+        results_raw['unreachable'][host]= result._result
     return results_raw
 
 if __name__=='__main__':    
-    a=Order_Run(['192.168.33.11'],'shell','whoami')
+    a=Order_Run(['192.168.33.11'],'sh_mydf','mountpoint=/')
     print a

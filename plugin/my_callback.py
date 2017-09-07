@@ -25,13 +25,19 @@ DOCUMENTATION:
     type: stdout
     plugin_api_version: "2.0"
 '''
+
+
 import os
 import sys
 import json
 from ansible.plugins.callback import CallbackBase
-import redis
+from InitRedis import set_redis_connection
+
 def write_result_to_redis():
-    pass
+    redis_cli=set_redis_connection()
+    redis_cli.set('name','lee')
+    print redis_cli.get('name')
+
 
 class CallbackModule(CallbackBase):
     def __init__(self, *args, **kwargs):  
@@ -52,4 +58,7 @@ class CallbackModule(CallbackBase):
         self.host_failed[result._host.get_name()] = result
         print  json.dumps(result._host.get_name())
 
-
+if __name__=="__main__":
+    write_result_to_redis()
+    
+    
