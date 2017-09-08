@@ -27,8 +27,8 @@ class CallbackModule(CallbackBase):
     def v2_runner_on_ok(self, result,  *args, **kwargs):  
         self.host_ok[result._host.get_name()] = result
         #display_result_info(result)
-        endtime=time.time()
-        self.playstarttime,self.taskstarttime, endtime
+        #endtime=time.time()
+        #self.playstarttime,self.taskstarttime, endtime
 
     def v2_runner_on_failed(self, result,  *args, **kwargs):  
         self.host_failed[result._host.get_name()] = result

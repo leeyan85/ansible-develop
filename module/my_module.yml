@@ -1,13 +1,17 @@
 ---
-- hosts: "{{host}}"
+- hosts: all
   gather_facts: no
   tasks:
     - name: test filecheck module 
-      sh_mydf: filename=/etc/passwd
+      sh_filecheck: filename=/etc/passwd
       become: yes
       become_user: root
       become_method: sudo
       register: output
+
     - name: debug vars
       debug: var=output
-      
+
+    - name: run test command
+      shell: echo "shell"
+      when: output.msg == 'modified'

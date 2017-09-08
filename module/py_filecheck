@@ -8,7 +8,7 @@ import re
 
 def GetFileMd5(module):
     if not os.path.isfile(module.params['filename']):
-        module.exit_json(msg="%s noexist"%module.params['filename'], changed=False)
+        module.exit_json(msg="noexist", changed=False)
     else:       
         myhash = hashlib.md5()
         f = file(module.params['filename'],'rb')
@@ -28,16 +28,16 @@ def GetFileMd5(module):
                         md5value_old=line.split(':')[1].strip('\n')
             print   md5value_old,   md5value_new       
             if md5value_old==md5value_new:
-                module.exit_json(msg="%s unmodified"%module.params['filename'], changed=False)
+                module.exit_json(msg="unmodified", changed=False)
             else:
                 with open('/tmp/myfact.txt','w') as f:
                     f.write('%s:%s\n'%(module.params['filename'],md5value_new))
-                module.exit_json(msg="%s modified"%module.params['filename'], changed=False)
+                module.exit_json(msg="modified", changed=False)
                 
         else:
             with open('/tmp/myfact.txt','w') as f:
                 f.write('%s:%s'%(module.params['filename'],md5value_new))        
-            module.exit_json(msg='fist register key ansible_%s_md5value'%module.params['filename'],md5value=md5value_new)
+            module.exit_json(msg='register',md5value=md5value_new)
             
             
 def main():
@@ -51,8 +51,10 @@ def main():
         module.exit_json(changed=False)
     else:
         GetFileMd5(module)
-            
-from ansible.module_utils.basic import *
+        
+
+#from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import * #对于ansible2.1来说, 上面的导入已经不能工作, 必须使用from ansible.module_utils.basic import *
 
 if __name__=='__main__':
     main()

@@ -4,7 +4,7 @@
   tasks:
   - name: run whoami command
     shell: whoami
-  - name: run date command
-    shell: date
   - name: run uptime command
+    shell: uptime
+  - name: run date command
     shell: uptime
