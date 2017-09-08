@@ -120,7 +120,6 @@ def order_run(hosts, module_name, module_args):
 
     for host, result in callback.host_ok.items(): 
         results_raw['success'][host] = result._result
-
        
     for host, result in callback.host_failed.items():
         results_raw['failed'][host] = result._result
@@ -130,5 +129,5 @@ def order_run(hosts, module_name, module_args):
     return results_raw
 
 if __name__=='__main__':    
-    a=order_run(['192.168.33.11'],'sh_mydf','mountpoint=/')
+    a=order_run(['172.18.0.2'],'sh_mydf','mountpoint=/')
     print a
