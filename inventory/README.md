@@ -54,7 +54,7 @@ _ _ _
 
 ## 3. 从数据库中获取动态Inventory
 
-### 3.1 安装一些软件
+### 3.1 本实验需要用到的软件
 
 1. sudo apt-get install python-pip
 2. sudo apt-get install redis-server
@@ -66,17 +66,18 @@ _ _ _
 
 ### 3.2 初始化数据库
 
-1. 建立一个数据库 
+1. 建立一个数据库 已经建立好了
 
    create database ansible_trainning character set utf8;
-
-2. 导入示例数据库
    
-   mysql ansible_trainning < ansible_trainning.sql
-
-3. 给数据库用户赋予权限
+2. 给数据库用户赋予权限，已经做完
    
    grant all privileges on ansible_trainning.* to ansibleuser identified by 'ansible';
+
+3. 导入示例数据库数据
+   
+   mysql -u ansibleuser -pansible ansible_trainning < ansible_trainning.sql
+
 
 _ _ _
    

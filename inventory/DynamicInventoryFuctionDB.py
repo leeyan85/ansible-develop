@@ -1,5 +1,16 @@
 #!/usr/bin/python
 #coding: utf-8
+import os
+import sys
+import argparse
+from models import Group,Host
+from InitSqlSession import get_session
+
+try:
+    import json
+except ImportError:
+    import simplejson as json
+    
 def example_inventory():
     session=get_session()
     #groups=session.query(Group).filter(Group.name=='webserver').all()
