@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex 
+#set -ex 
 #mountpoint='/'
 export $1
 result=`df -P -k $mountpoint | tail -1`
