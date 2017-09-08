@@ -3,7 +3,7 @@
   gather_facts: no
   tasks:
     - name: test filecheck module 
-      py_filecheck: filename=/etc/passwd
+      sh_mydf: filename=/etc/passwd
       become: yes
       become_user: root
       become_method: sudo
