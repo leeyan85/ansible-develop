@@ -1,0 +1,10 @@
+---
+- hosts: all
+  gather_facts: no 
+  tasks:
+  - name: run whoami command
+    shell: whoami
+  - name: run date command
+    shell: date
+  - name: run uptime command
+    shell: uptime

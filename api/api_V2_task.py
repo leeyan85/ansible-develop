@@ -33,7 +33,7 @@ class ResultCallback(CallbackBase):
  
 
 
-def Order_Run(hosts, module_name, module_args):
+def order_run(hosts, module_name, module_args):
     variable_manager = VariableManager()
     loader = DataLoader()
     print "#"*10
@@ -130,5 +130,5 @@ def Order_Run(hosts, module_name, module_args):
     return results_raw
 
 if __name__=='__main__':    
-    a=Order_Run(['192.168.33.11'],'sh_mydf','mountpoint=/')
+    a=order_run(['192.168.33.11'],'sh_mydf','mountpoint=/')
     print a

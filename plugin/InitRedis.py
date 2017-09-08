@@ -1,3 +1,6 @@
+#!/bin/env python
+# -*- coding:utf8 -*-
+
 import redis
 
 def set_redis_connection():

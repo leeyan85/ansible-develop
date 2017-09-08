@@ -30,29 +30,29 @@ class Inventory(object):
                             'children': ['webservers','dbservers'],
                 },
                 'webservers':{
-                            'hosts':['10.75.30.29'],
+                            'hosts':['172.18.0.2'],
                             'vars':{
                                     'package':'group_web_var',
-                                    'ansible_become_pass':'123456',
-                                    'ansible_become_user':'andbase',
+                                    'ansible_become_pass':'password',
+                                    'ansible_become_user':'root',
                                     'ansible_become': True,
                                     'ansible_become_method':'su',                                      
 
                              }
                  },
                  'dbservers':{
-                            'hosts':['10.75.30.30'],
+                            'hosts':['172.18.0.5'],
                             'vars':{
                                     'package':'group_db_var',
                              }
                  },
                  '_meta' : {
                         'hostvars':{
-                            '10.75.30.29':{
+                            '172.18.0.2':{
                                         'package':'host_web_var',
                                       
                             },
-                            '10.75.30.30':{
+                            '172.18.0.5':{
                                 'package': 'host_db_var',
                             },
                         }

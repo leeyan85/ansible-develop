@@ -9,7 +9,6 @@ import json
 import sys
 
 class VM(object):
-
     def __init__(self, ipAddress, userName, remoteUser):
         self.ipAddress = [ ipAddress ]
         self.userName = userName
