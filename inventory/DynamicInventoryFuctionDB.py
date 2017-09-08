@@ -24,4 +24,4 @@ def example_inventory():
     print json.dumps(inventory,indent=4)
     #return json.dumps(inventory,indent=4)
 
-#example_inventory()
+example_inventory()
