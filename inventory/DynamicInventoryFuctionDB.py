@@ -7,11 +7,11 @@ from models import Group,Host
 from InitSqlSession import get_session
 
 try:
-    import json
+    import json 
 except ImportError:
     import simplejson as json
     
-def example_inventory():
+def get_inventory():
     session=get_session()
     #groups=session.query(Group).filter(Group.name=='webserver').all()
     groups=session.query(Group).all()
@@ -32,7 +32,21 @@ def example_inventory():
             inventory['_meta']['hostvars'][host.IP]={
                         'software':host.software,
             }
-    print json.dumps(inventory,indent=4)
-    #return json.dumps(inventory,indent=4)
+    #print json.dumps(inventory,indent=4)
+    return inventory
+    
+def get_host_vars(host): 
+    return inventory['_meta']['hostvars'][host]  
 
-example_inventory()
+if __name__=='__main__':
+    inventory = get_inventory()
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--list',action='store_true',dest='list',help='get all hosts')
+    parser.add_argument('--host',action='store',dest='host',help='get host vars')
+    args=parser.parse_args()
+    if args.list:
+        inventory=get_inventory()
+        print json.dumps(inventory,indent=4)
+    elif args.host:
+        hostvar=get_host_vars(args.host)
+        print json.dumps({args.host:hostvar},indent=4)

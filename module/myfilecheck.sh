@@ -4,7 +4,7 @@ export  $1
 #echo $test
 if [ ! -f "$filename" ]
 then
-    echo "noexist"
+    echo -n "noexist"
     exit
 fi 
 
@@ -20,16 +20,16 @@ if [ -z "$fact_exist" ]
 then
     md5value=`md5sum $filename | awk '{print $1}'`
     echo "$filename:$md5value" >> /tmp/myfact.txt
-    echo "register"
+    echo -n "register"
 else
     md5sum_old=`grep $filename $fact_file | awk -F":" '{print $2}'`
     md5sum_new=`md5sum $filename| awk '{print $1}'`
     #echo  $md5sum_old $md5sum_new
     if [ "$md5sum_old" == "$md5sum_new" ]
     then
-        echo "unmodified"
+        echo -n "unmodified"
     else
         sed -i "s#$filename.*#$filename:$md5sum_new#g" $fact_file
-        echo "modified"
+        echo -n "modified"
     fi    
 fi

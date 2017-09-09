@@ -8,21 +8,7 @@ try:
 except ImportError:
     import simplejson as json
 
-
-class Inventory(object):
-    def __init__(self):
-        self.inventory={}
-        self.ReadCli()
-        if self.args.list:
-            self.inventory=self.GetInventory()
-        elif self.args.host:
-            self.inventory=self.GetInventory()
-        else:
-            self.inventory=self.EmptyInventory()
-        print json.dumps(self.inventory,indent=4)
-
-    def GetInventory(self):
-        return {
+example_inventory={
                 'servers': {
                             'vars':{
                                     'package':'servers_var',
@@ -58,16 +44,35 @@ class Inventory(object):
                         }
                   }
 
-            }           
-                
+            }   
+
+            
+class Inventory(object):
+    def __init__(self):
+        self.inventory=example_inventory
+        self.read_cli()
+        if self.args.list:
+            self.inventory=self.get_inventroy()
+        elif self.args.host:
+            print self.args.host
+            self.inventory=self.get_host_vars(self.args.host)
+        else:
+            self.inventory=self.empty_inventory()
+        print json.dumps(self.inventory,indent=4)
+
+    def get_inventroy(self):
+        return self.inventory
     
-    def EmptyInventory(self):
+    def empty_inventory(self):
         return{'_meta':{'hostvars':{}}}
         
-    def ReadCli(self):
+    def get_host_vars(self,host):
+        return self.inventory['_meta']['hostvars'][host]
+        
+    def read_cli(self):
         parser=argparse.ArgumentParser()
-        parser.add_argument('--list',action='store_true')
-        parser.add_argument('--host',action='store')
+        parser.add_argument('--list',action='store_true',dest='list',help='get all hosts')
+        parser.add_argument('--host',action='store',dest='host',help='get host vars')
         self.args=parser.parse_args()
 
         
