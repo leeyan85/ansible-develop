@@ -110,8 +110,11 @@ def playbook_run(playbook_path,host_inventory):
     playbook = PlaybookExecutor(playbooks=[playbook_path],inventory=inventory,
                   variable_manager=variable_manager,
                   loader=loader,options=options,passwords=passwords)
+                  
     results_callback=CallbackModule()
+    
     playbook._tqm._stdout_callback=results_callback 
+    
     result = playbook.run()
     
     write_task_info_to_redis(results_callback.host_ok)
