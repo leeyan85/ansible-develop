@@ -1,0 +1,8 @@
+[test]
+172.18.0.2
+172.18.0.3
+172.18.0.4
+172.18.0.5
+[test:vars]
+ansible_ssh_user=root
+ansible_ssh_pass=shroot

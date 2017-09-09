@@ -55,6 +55,6 @@ class Inventory(object):
         #print json.dumps(inventory,indent=4)
         return inventory
     def get_host_vars(self,host):
-        return self.inventory['_meta']['hostvars'][host]          
+        return self.inventory['_meta']['hostvars'][host]      
 if __name__=='__main__':  
     Inventory()
