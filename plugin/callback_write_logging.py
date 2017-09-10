@@ -4,11 +4,6 @@ from ansible.plugins.callback import CallbackBase
 import json
 import time
 import logging
-import redis
-
-def set_redis_connection():
-    redis_cli=redis.Redis(host='127.0.0.1',port=6379,db=0)
-    return redis_cli
 
 def display_result_info(result):
     print json.dumps(dir(result._host),indent=4)
@@ -39,16 +34,17 @@ class CallbackModule(CallbackBase): #callback plugin
 
     def v2_runner_on_unreachable(self, result):
         self.host_unreachable[result._host.get_name()] = result
-        #display_result_info(result)
 
     def v2_runner_on_ok(self, result, *args, **kwargs):  
         self.host_ok.append({result._host.get_name():result})
-        #display_result_info(result)
-        print result._host.get_name(),result._task.name,self.playstarttime,self.taskstarttime,endtime   
+        endtime=time.time()
+        print endtime
+        info="%s %s %s %s %s"%(result._host.get_name(),result._task.name,self.playstarttime,self.taskstarttime,endtime)
+        print info
+        write_task_info_to_log(info)
         
     def v2_runner_on_failed(self, result,  *args, **kwargs):  
         self.host_failed[result._host.get_name()] = result
-        #display_result_info(result)
 
     def v2_playbook_on_play_start(self, play):
         self.playstarttime=time.time()
@@ -63,7 +59,3 @@ class CallbackModule(CallbackBase): #callback plugin
     def v2_playbook_on_task_start(self, task, is_conditional):
         self.taskstarttime=time.time()
 
-if __name__=="__main__":
-    write_result_to_redis()
-    
-    
