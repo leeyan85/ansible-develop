@@ -75,5 +75,5 @@ class Inventory(object):
         parser.add_argument('--host',action='store',dest='host',help='get host vars')
         self.args=parser.parse_args()
 
-        
-Inventory()
+if __name__=='__main__':     
+    Inventory()

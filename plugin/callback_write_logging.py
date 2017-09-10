@@ -3,6 +3,7 @@
 from ansible.plugins.callback import CallbackBase
 import json
 import time
+import logging
 import redis
 
 def set_redis_connection():
@@ -21,6 +22,16 @@ def write_task_info_to_redis(result):
             print key,host_results[key]._result
             redis_cli.rpush(key,host_results[key]._result)
             
+def write_task_info_to_log(info):    
+    logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s',
+                    datefmt='%a, %d %b %Y %H:%M:%S',
+                    filename='myapp.log',
+                    filemode='w')
+        
+    logging.debug(info)
+    logging.info(info)
+    logging.warning(info)
 
     
 class CallbackModule(CallbackBase): #callback plugin
@@ -39,9 +50,10 @@ class CallbackModule(CallbackBase): #callback plugin
 
     def v2_runner_on_ok(self, result, *args, **kwargs):  
         self.host_ok.append({result._host.get_name():result})
-        display_result_info(result)
-
-
+        #display_result_info(result)
+        endtime=time.time()
+        #print result._host.get_name(),result._task.name,self.playstarttime,self.taskstarttime,endtime   
+        
     def v2_runner_on_failed(self, result,  *args, **kwargs):  
         self.host_failed[result._host.get_name()] = result
         #display_result_info(result)
@@ -52,17 +64,6 @@ class CallbackModule(CallbackBase): #callback plugin
     def v2_playbook_on_task_start(self, task, is_conditional):
         self.taskstarttime=time.time()
 
-
-    def v2_runner_on_ok(self, result, *args, **kwargs):  
-        self.host_ok.append({result._host.get_name():result})
-        #display_result_info(result)
-        endtime=time.time()
-        #print result._host.get_name(),result._task.name,self.playstarttime,self.taskstarttime,endtime   
-        
-
-    def v2_runner_on_failed(self, result,  *args, **kwargs):  
-        self.host_failed[result._host.get_name()] = result
-        #display_result_info(result)
 
     def v2_playbook_on_play_start(self, play):
         self.playstarttime=time.time()
