@@ -14,7 +14,7 @@ def display_result_info(result):
     display_seperate('result._host')
     print json.dumps(dir(result._host),indent=4)
     display_seperate('result._result')
-    print json.dumps(result._result,indent=4)
+    print json.dumps(dir(result._result),indent=4)
     display_seperate('result._task')
     print json.dumps(dir(result._task),indent=4)
 
