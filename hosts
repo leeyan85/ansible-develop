@@ -1,8 +1,7 @@
 [test]
-172.18.0.2
-172.18.0.3
-172.18.0.4
-172.18.0.5
+10.40.0.10 name='cmdb01'
+10.40.0.11 name='webserver01'
+10.40.0.12 name='webserver02'
+10.40.0.13 name='dbserver01'
 [test:vars]
 ansible_ssh_user=root
-ansible_ssh_pass=shroot
