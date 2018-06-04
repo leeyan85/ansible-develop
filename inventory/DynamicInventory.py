@@ -54,11 +54,11 @@ class Inventory(object):
         if self.args.list:
             self.inventory=self.get_inventroy()
         elif self.args.host:
-            print self.args.host
+            print(self.args.host)
             self.inventory=self.get_host_vars(self.args.host)
         else:
             self.inventory=self.empty_inventory()
-        print json.dumps(self.inventory,indent=4)
+        print(json.dumps(self.inventory,indent=4))
 
     def get_inventroy(self):
         return self.inventory

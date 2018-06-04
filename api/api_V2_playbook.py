@@ -17,15 +17,15 @@ def set_redis_connection():
     return redis_cli
 
 def display_result_info(result):
-    print json.dumps(dir(result._host),indent=4)
-    print json.dumps(dir(result._result),indent=4)
-    print json.dumps(dir(result._task),indent=4)
+    print (json.dumps(dir(result._host),indent=4))
+    print (json.dumps(dir(result._result),indent=4))
+    print (json.dumps(dir(result._task),indent=4))
 
 def write_task_info_to_redis(result):
     redis_cli=set_redis_connection()
     for host_results in result:
         for key in host_results.keys():        
-            print key,host_results[key]._result
+            print (key,host_results[key]._result)
             redis_cli.rpush(key,host_results[key]._result)
             
 

@@ -6,9 +6,9 @@ import time
 import logging
 
 def display_result_info(result):
-    print json.dumps(dir(result._host),indent=4)
-    print json.dumps(dir(result._result),indent=4)
-    print json.dumps(dir(result._task),indent=4)
+    print (json.dumps(dir(result._host),indent=4))
+    print (json.dumps(dir(result._result),indent=4))
+    print (json.dumps(dir(result._task),indent=4))
            
 def write_task_info_to_log(info):    
     logging.basicConfig(level=logging.DEBUG,
@@ -38,9 +38,9 @@ class CallbackModule(CallbackBase): #callback plugin
     def v2_runner_on_ok(self, result, *args, **kwargs):  
         self.host_ok.append({result._host.get_name():result})
         endtime=time.time()
-        print endtime
+        print (endtime)
         info="%s %s %s %s %s"%(result._host.get_name(),result._task.name,self.playstarttime,self.taskstarttime,endtime)
-        print info
+        print (info)
         write_task_info_to_log(info)
         
     def v2_runner_on_failed(self, result,  *args, **kwargs):  

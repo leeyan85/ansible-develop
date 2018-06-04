@@ -15,7 +15,7 @@ def set_redis_connection():
 def write_task_info_to_redis(result):
     redis_cli=set_redis_connection()
     for key in result.keys():        
-        print key,result[key]._result
+        print(key,result[key]._result)
         redis_cli.rpush(key,result[key]._task)    
 
             

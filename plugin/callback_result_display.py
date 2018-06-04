@@ -7,16 +7,17 @@ import time
 from ansible.plugins.callback import CallbackBase
 
 def display_seperate(info):
-    print info
-    print '='*150
+    print(info)
+    print('='*150)
+
 def display_result_info(result):
-    print json.dumps(dir(result),indent=4)
+    print (json.dumps(dir(result),indent=4))
     display_seperate('result._host')
-    print json.dumps(dir(result._host),indent=4)
+    print (json.dumps(dir(result._host),indent=4))
     display_seperate('result._result')
-    print json.dumps(dir(result._result),indent=4)
+    print (json.dumps(dir(result._result),indent=4))
     display_seperate('result._task')
-    print json.dumps(dir(result._task),indent=4)
+    print (json.dumps(dir(result._task),indent=4))
 
 class CallbackModule(CallbackBase):
     def __init__(self, *args, **kwargs):  

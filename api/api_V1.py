@@ -29,8 +29,8 @@ class VM(object):
         self.Output = Runner.run()
 
     def printoutput(self):
-        print json.dumps(self.Output,indent=4)
-        print self.priKeyFile
+        print (json.dumps(self.Output,indent=4))
+        print (self.priKeyFile)
 
     def RunPlaybook(self,playbook,hostlist): #playbook,用来指定playbook的yaml文件, hostlist 指定hosts文件
         stats = callbacks.AggregateStats() #收集playbook执行期间的状态信息，最后会进行汇总

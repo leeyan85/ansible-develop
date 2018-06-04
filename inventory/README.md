@@ -20,20 +20,21 @@ _ _ _
     {
         "webserver": {
             "hosts": [
-                "192.168.33.11"
+                "10.40.0.13"
             ], 
             "vars": {
-                "ansible_become_user": "vagrant", 
-                "ansible_become_pass": "vagrant"
+                "ansible_become_user": "root", 
+                "ansible_become_pass": "redhat"
             }
         }, 
         "dbserver": {
             "hosts": [
-                "192.168.33.12"
+                "10.40.0.11",
+                "10.40.0.12",
             ], 
             "vars": {
                 "ansible_become_user": "root", 
-                "ansible_become_pass": "secret"
+                "ansible_become_pass": "redhat"
             }
         }，  
         "_meta": {
@@ -56,11 +57,11 @@ _ _ _
 
 ### 3.1 本实验需要用到的软件，环境已经建立完成
 
-1. sudo apt-get install python-pip
-2. sudo apt-get install redis-server
-3. sudo apt-get install python-redis
-4. sudo apt-get install python-sqlalchemy
-5. sudo apt-get install python-mysqldb
+1. sudo yum install python-pip
+2. sudo yum install redis-server
+3. sudo yum install python-redis
+4. sudo yum install python-sqlalchemy
+5. sudo yum install python-mysqldb
 6. sudo pip install pymysql
 _ _ _
 

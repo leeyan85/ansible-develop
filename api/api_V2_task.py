@@ -22,8 +22,8 @@ class ResultCallback(CallbackBase):
 
     def v2_runner_on_unreachable(self, result):  
         self.host_unreachable[result._host.get_name()] = result #result是一个ansible执行模块返回的python对象
-        print json.dumps(dir(result._task),indent=4) #如何查看result对象有哪些属性和方法
-        print json.dumps(dir(result),indent=4) #如何查看result对象有哪些属性和方法  
+        print (json.dumps(dir(result._task),indent=4)) #如何查看result对象有哪些属性和方法
+        print (json.dumps(dir(result),indent=4)) #如何查看result对象有哪些属性和方法
         
     def v2_runner_on_ok(self, result,  *args, **kwargs):  
         self.host_ok[result._host.get_name()] = result  
@@ -36,9 +36,9 @@ class ResultCallback(CallbackBase):
 def order_run(hosts, module_name, module_args):
     variable_manager = VariableManager()
     loader = DataLoader()
-    print "#"*10
+    print ("#"*10)
     inventory = Inventory(loader=loader, variable_manager=variable_manager, host_list=hosts)#2.0.0.0版本不支持host_list为列表格式
-    print '#'*10
+    print ('#'*10)
     Options = namedtuple('Options',
                         ['listtags', 
                         'listtasks',
@@ -91,7 +91,7 @@ def order_run(hosts, module_name, module_args):
                         #dict(action=dict(module='command', args='id'))
                     ]
                     )
-    print json.dumps(play_source,indent=4)
+    print (json.dumps(play_source,indent=4))
     play = Play().load(play_source, variable_manager=variable_manager, loader=loader)
     tqm = None
     callback = ResultCallback()
@@ -108,7 +108,7 @@ def order_run(hosts, module_name, module_args):
                 )
         
         result = tqm.run(play)
-        print result
+        print (result)
     finally:
         if tqm is not None:
             tqm.cleanup()
@@ -130,4 +130,4 @@ def order_run(hosts, module_name, module_args):
 
 if __name__=='__main__':    
     a=order_run(['172.18.0.2'],'sh_mydf','mountpoint=/')
-    print a
+    print (a)

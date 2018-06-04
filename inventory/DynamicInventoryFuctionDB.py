@@ -46,7 +46,7 @@ if __name__=='__main__':
     args=parser.parse_args()
     if args.list:
         inventory=get_inventory()
-        print json.dumps(inventory,indent=4)
+        print(json.dumps(inventory,indent=4))
     elif args.host:
         hostvar=get_host_vars(args.host)
-        print json.dumps({args.host:hostvar},indent=4)
+        print(json.dumps({args.host:hostvar},indent=4))

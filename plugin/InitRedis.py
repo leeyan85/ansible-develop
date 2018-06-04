@@ -9,4 +9,4 @@ def set_redis_connection():
 
 if __name__=='__main__':
     redis_cli=set_redis_connection()
-    print redis_cli.get('name')
+    print(redis_cli.get('name'))
