@@ -1,6 +1,19 @@
 # Ansible Develop Guide
 
-[TOC]
+## 环境准备
+
+准备4台虚拟主机
+
+IP|作用|主机名
+---|---| ---
+10.40.0.10 | ansible主机 |  cmdb01
+10.40.0.11 | 被管理主机 | webserver01
+10.40.0.12 | 被管理主机 | webserver02
+10.40.0.13 | 被管理主机 | dbserver01
+
+安装所需要的软件
+
+在ansible主机10.40.0.10上安装所需要的软件
 
 
 ## 1. Dynamic Inventory
@@ -17,6 +30,9 @@ AWS和openstack,ansible已经提供了如何生成动态inventory的脚本，可
 [AWS ansible Dynamic inventory scripts](http://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html#id6)
 
 [Openstack ansible Dynamic inventory scripts](http://docs.ansible.com/ansible/latest/intro_dynamic_inventory.html#example-openstack-external-inventory-script)
+
+
+
 
 ***本课程通过建立一个简单的CMDB，并且使用python脚本从CMDB获取Dynamic Inventory***
 
